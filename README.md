@@ -1,3 +1,3 @@
 # JS-Fractals
- Javascript + HTML5 Fractals in browser!
+ Javascript Fractals!
 https://trevin-small.github.io/JS-Fractals/
