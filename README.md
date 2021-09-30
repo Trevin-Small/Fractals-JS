@@ -1,10 +1,7 @@
-# JS-Fractals
- Javascript Fractals!
-https://trevin-small.github.io/JS-Fractals/
+## JS-Fractals https://trevin-small.github.io/JS-Fractals/
 
-Pretty cool what some circles, recursion, and triginometry can do!!
 
-The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively.
+### The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively.
 
 ### First, a center or 'parent' circle is drawn. 
 ![Initial Circle](https://github.com/Trevin-Small/JS-Fractals/blob/main/Initial_Circle.png)
