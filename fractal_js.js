@@ -9,15 +9,17 @@ function newFractals() {
     var FILL_PREFIX = 'hsl(';
     var LIGHTING = ', ' + (Math.random() * 15 + 45) + '%, ' + (Math.random() * 15 + 45) + '%)';
     var prevColor = (360 * Math.random());
-    var FRACTAL_OPACITY = Math.random() * 0.65 + 0.2;
+    var FRACTAL_OPACITY = Math.random() * 0.5 + 0.35;
     var BACKGROUND_OPACITY = 1;
+    var HAS_FILL = Math.random() < 0.1 ? false : true;
 
     var FPS = 45;
+    var IS_STATIC = false;
     var ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
     var RPS = ((Math.random() * 0.05) + 0.05) * ROTATION_DIRECTION;
     var TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
     var MIN_RADIUS = (Math.random() * 10) + 15;
-    var RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.5;
+    var RADIUS_COEFFICIENT = 0.5;//(Math.random() * 0.15) + 0.5;
     var currentTheta = 0;
 
     var direction = {
@@ -86,7 +88,7 @@ function newFractals() {
 
         if (radius > MIN_RADIUS) {
 
-            if (drawnInDirection != 0) {
+            if (drawnInDirection != 0 && !IS_STATIC) {
                 var newPos = circularTranslation(oldX, oldY, parentX, parentY, drawnInDirection);
                 currentX = newPos[0];
                 currentY = newPos[1];
@@ -97,17 +99,22 @@ function newFractals() {
 
             if (currentX > -radius && currentX < width + radius && currentY > -radius && currentY < height + radius) {
                 
-                prevColor += 1;
-                if (prevColor == 360) {
-                    prevColor = 0;
+                if (HAS_FILL) {
+                    prevColor += (Math.random() * 2) + 1;
+                    if (prevColor == 360) {
+                        prevColor = 0;
+                    }
+                    ctx.fillStyle = FILL_PREFIX + prevColor + LIGHTING;
                 }
                 
-                ctx.fillStyle = FILL_PREFIX + prevColor + LIGHTING;
                 ctx.beginPath();
                 ctx.arc(currentX, currentY, radius, 0, 2 * Math.PI);
                 ctx.closePath();
                 ctx.stroke();
-                ctx.fill();
+
+                if (HAS_FILL) {
+                    ctx.fill();
+                }
 
                 switch(drawnInDirection) {
                     case 0: // First fractal
@@ -141,7 +148,11 @@ function newFractals() {
                 }
             }
         }
-        return prevColor;
+        if (HAS_FILL) {
+            return prevColor;
+        } else {
+            return 0;
+        }
     }
 
     function circularTranslation(xPos, yPos, parentX, parentY, drawnInDirection) {
