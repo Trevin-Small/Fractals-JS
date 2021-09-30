@@ -11,7 +11,7 @@ function newFractals() {
     var prevColor = (360 * Math.random());
     var FRACTAL_OPACITY = Math.random() * 0.5 + 0.35;
     var BACKGROUND_OPACITY = 1;
-    var HAS_FILL = Math.random() < 0.1 ? false : true;
+    var HAS_FILL = Math.random() < 0.2 ? false : true;
 
     var FPS = 45;
     var IS_STATIC = false;
@@ -19,7 +19,7 @@ function newFractals() {
     var RPS = ((Math.random() * 0.05) + 0.05) * ROTATION_DIRECTION;
     var TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
     var MIN_RADIUS = (Math.random() * 10) + 15;
-    var RADIUS_COEFFICIENT = 0.5;//(Math.random() * 0.15) + 0.5;
+    var RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.5;
     var currentTheta = 0;
 
     var direction = {
