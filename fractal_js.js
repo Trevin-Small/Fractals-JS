@@ -16,10 +16,10 @@ function newFractals() {
     var FPS = 45;
     var IS_STATIC = false;
     var ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
-    var RPS = ((Math.random() * 0.05) + 0.05) * ROTATION_DIRECTION;
+    var RPS = ((Math.random() * 0.075) + 0.05) * ROTATION_DIRECTION;
     var TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
-    var MIN_RADIUS = (Math.random() * 10) + 15;
-    var RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.5;
+    var MIN_RADIUS = (Math.random() * 10) + 10;
+    var RADIUS_COEFFICIENT = (Math.random() * 0.1) + 0.55;
     var currentTheta = 0;
 
     var direction = {
