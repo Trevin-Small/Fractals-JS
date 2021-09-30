@@ -1,4 +1,4 @@
-var Fractals = (function newFractals() {
+function newFractals() {
     'use strict';
     var raf_ID = 0;
     var canvas = document.createElement('canvas');
@@ -10,11 +10,11 @@ var Fractals = (function newFractals() {
     var LIGHTING = ', ' + (Math.random() * 15 + 45) + '%, ' + (Math.random() * 15 + 45) + '%)';
     var prevColor = (360 * Math.random());
     var FRACTAL_OPACITY = Math.random() * 0.8 + 0.2;
-    var BACKGROUND_OPACITY = Math.random() * 0.85 + 0.15;
+    var BACKGROUND_OPACITY = 1;
 
-    var FPS = 45;
+    var FPS = 60;
     var ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
-    var RPS = ((Math.random() * 0.2) + 0.1) * ROTATION_DIRECTION;
+    var RPS = ((Math.random() * 0.2) + 0.005) * ROTATION_DIRECTION;
     var TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
     var MIN_RADIUS = (Math.random() * 20) + 20;
     var RADIUS_COEFFICIENT = (Math.random() * 0.1) + 0.55;
@@ -40,11 +40,6 @@ var Fractals = (function newFractals() {
 
         startRender();
 
-    }
-
-    function staticRender() { // Use if you want a static (unchanging) fractal
-        ctx.clearRect(0, 0, width, height);
-        renderFractals();
     }
 
     function render() { // Recrusive Animation loop 
@@ -100,7 +95,7 @@ var Fractals = (function newFractals() {
                 currentY = oldY;
             }
 
-            if (currentX > 0 && currentX < width && currentY > 0 && currentY < height) {
+            if (currentX > -radius && currentX < width + radius && currentY > -radius && currentY < height + radius) {
                 
                 prevColor += 1;
                 if (prevColor == 360) {
@@ -183,7 +178,8 @@ var Fractals = (function newFractals() {
         stopRender: stopRender
     };
 
-})();
+}
+var Fractals = newFractals();
 
 window.onload = function() {
     Fractals.init(document.body);
