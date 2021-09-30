@@ -9,12 +9,15 @@ var Fractals = (function newFractals() {
     var FILL_PREFIX = 'hsl(';
     var LIGHTING = ', ' + (Math.random() * 15 + 45) + '%, ' + (Math.random() * 15 + 45) + '%)';
     var prevColor = (360 * Math.random());
+    var FRACTAL_OPACITY = Math.random() * 0.8 + 0.2;
+    var BACKGROUND_OPACITY = Math.random() * 0.85 + 0.15;
 
     var FPS = 45;
-    var RPS = 0.2;
+    var ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
+    var RPS = ((Math.random() * 0.2) + 0.1) * ROTATION_DIRECTION;
     var TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
-    var MIN_RADIUS = 25;
-    var RADIUS_COEFFICIENT = 0.65;
+    var MIN_RADIUS = (Math.random() * 20) + 20;
+    var RADIUS_COEFFICIENT = (Math.random() * 0.1) + 0.55;
     var currentTheta = 0;
 
     var direction = {
@@ -47,6 +50,7 @@ var Fractals = (function newFractals() {
     function render() { // Recrusive Animation loop 
         setTimeout(function() {
             raf_ID = window.requestAnimationFrame(render);
+            ctx.globalAlpha = BACKGROUND_OPACITY;
             ctx.fillStyle = "rgba(25,25,25)";
             ctx.fillRect(0, 0, width, height);
             renderFractals();
@@ -73,7 +77,7 @@ var Fractals = (function newFractals() {
 
     function renderFractals() {
         ctx.lineWidth = 3;
-        ctx.globalAlpha = 0.60;
+        ctx.globalAlpha = FRACTAL_OPACITY;
         ctx.strokeStyle = 'rgb(255,255,255)';
         var smallerDimension = width < height ? width : height;
         var initialRadius = smallerDimension / 6;
