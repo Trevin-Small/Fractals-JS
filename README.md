@@ -6,7 +6,11 @@ Pretty cool what some circles, recursion, and triginometry can do!!
 
 The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively.
 
-First, a center or 'parent' circle is drawn. Next, 4 children circles are drawn (upwards, rightwards, downwards, leftwards) relative to the center circle. These circles are centered on the parent circles curve.
+## First, a center or 'parent' circle is drawn. 
+![Initial Circle](https://github.com/Trevin-Small/JS-Fractals/blob/main/Initial_Circle.png)
+
+## Next, 4 children circles centered on the curve of the parent circle are drawn (upwards, rightwards, downwards, leftwards)
+![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/First_Children.png)
 
 Each of these children circles becomes a parent circle and draws its own children circles. The direction that its children are drawn in is based upon the direction the parent was drawn in.
 
