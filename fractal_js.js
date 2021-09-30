@@ -5,15 +5,16 @@ var Fractals = (function newFractals() {
     var ctx = canvas.getContext('2d');
     var width = canvas.width = window.innerWidth;
     var height = canvas.height = window.innerHeight;
+
     var FILL_PREFIX = 'hsl(';
     var LIGHTING = ', ' + (Math.random() * 15 + 45) + '%, ' + (Math.random() * 15 + 45) + '%)';
+    var prevColor = (360 * Math.random());
+
     var FPS = 45;
     var RPS = 0.2;
     var TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
-    var MIN_OFFSET_VAL = 0.000001;
     var MIN_RADIUS = 25;
     var RADIUS_COEFFICIENT = 0.65;
-    var prevColor = 0; //(360 * Math.random());
     var currentTheta = 0;
 
     var direction = {
@@ -95,25 +96,19 @@ var Fractals = (function newFractals() {
                 currentY = oldY;
             }
 
-            // Uncomment to make static --> Used for making sure you arent going crazy 
-            /*
-            currentX = oldX;
-            currentY = oldY;
-            */
-
             if (currentX > 0 && currentX < width && currentY > 0 && currentY < height) {
-                /*
-                prevColor += (Math.random() * 5);
-                if (prevColor >= 355) {
+                
+                prevColor += 1;
+                if (prevColor == 360) {
                     prevColor = 0;
                 }
-                */
+                
                 ctx.fillStyle = FILL_PREFIX + prevColor + LIGHTING;
                 ctx.beginPath();
                 ctx.arc(currentX, currentY, radius, 0, 2 * Math.PI);
                 ctx.closePath();
                 ctx.stroke();
-                //ctx.fill();
+                ctx.fill();
 
                 switch(drawnInDirection) {
                     case 0: // First fractal
@@ -147,7 +142,7 @@ var Fractals = (function newFractals() {
                 }
             }
         }
-        //return prevColor;
+        return prevColor;
     }
 
     function circularTranslation(xPos, yPos, parentX, parentY, drawnInDirection) {
