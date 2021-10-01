@@ -67,7 +67,13 @@ function newFractals() {
         });
 
         canvas.addEventListener('click', function(evt) {
-            randomize();
+            if (IS_STATIC) {
+                IS_STATIC = false;
+            } else {
+                randomize();
+                IS_STATIC = true;
+                currentTheta = Math.PI;
+            }
         }, false);
     }
 
