@@ -1,7 +1,7 @@
 ## JS-Fractals https://trevin-small.github.io/JS-Fractals/
 
 
-### The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively.
+### The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively. In this example, we will use the circle, but other shapes (just squares for now!) follow the same rules.
 
 ### First, a center or 'parent' circle is drawn. 
 ![Initial Circle](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Initial_Circle.png)
@@ -9,18 +9,17 @@
 ### Next, 4 children circles centered on the curve of the parent circle are drawn (upwards, rightwards, downwards, leftwards)
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Children.png)
 
-### Each of those children circles draws its own children circles. The direction that its children are drawn in is based upon the direction the previous child was drawn in.
+### Each of those children circles draws its own children circles.
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Second_Children.png)
-### The children circles are never drawn in the opposite direction of the previous child. This is to stop messy overlap of circles in the center of the fractal.  
+### The children circles may or may not be drawn in the opposite direction of the previous child. This is a randomized characteristic of each fractal.
+#### Notice how the first left child circle is missing its right child circle? Since left is opposite of right, this child was not drawn.
 - Ex. Previous child circle was drawn leftward from its parent, so the next children circles are drawn leftward, upward, and downward.   
-- Ex. Previous circle was drawn downward from its parent, so the next children circles are drawn leftward, rightward, and downward.  
+- Ex. Previous circle was drawn downward from its parent, so the next children circles are drawn leftward, rightward, and downward. 
+#### However, this does not always hold true. This depends on the random boolean trait, which in the alternate case would draw children in all 4 directions.  
 
 # Once these circles are drawn, they are all transformed in a circular fashion relative to their parent circle.  
-</br>
 
 ### The first or center circle is stationary, as a circle rotated about its center does not move.
-</br>
-
 ### Its children follow the center circles' curve and orbit it. (Here, the children are rotating clockwise)
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/First_Rotation.png)
 
