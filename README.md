@@ -9,11 +9,12 @@
 ### Next, 4 children circles centered on the curve of the parent circle are drawn (upwards, rightwards, downwards, leftwards)
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Children.png)
 
-### Each of those children circles draws its own children circles. The direction that its children are drawn in is based upon the direction the previous child was drawn in.
+### Each of those children circles draws its own children circles.
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Second_Children.png)
-### The children circles are never drawn in the opposite direction of the previous child. This is to stop messy overlap of circles in the center of the fractal.  
+### The children circles may or may not be drawn in the opposite direction of the previous child. This is a randomized characteristic of each fractal.
 - Ex. Previous child circle was drawn leftward from its parent, so the next children circles are drawn leftward, upward, and downward.   
-- Ex. Previous circle was drawn downward from its parent, so the next children circles are drawn leftward, rightward, and downward.  
+- Ex. Previous circle was drawn downward from its parent, so the next children circles are drawn leftward, rightward, and downward. 
+- Alternatively, children would be drawn in all 4 directions. 
 
 # Once these circles are drawn, they are all transformed in a circular fashion relative to their parent circle.  
 </br>
