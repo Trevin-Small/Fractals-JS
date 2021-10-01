@@ -1,5 +1,5 @@
 # [JS-Fractals](https://trevin-small.github.io/JS-Fractals/) 
-<h2 align="center">W A I T. F O R. C O N V E R G E N C E.</h2>
+<h2 align="center">AWAIT CONVERGENCE</h2>
 <h3 align="center">Space/Click for new fractal!</h3>
 </br>
 ## The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively. 
