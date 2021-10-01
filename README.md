@@ -1,6 +1,6 @@
-## JS-Fractals https://trevin-small.github.io/JS-Fractals/
-
-
+# [JS-Fractals](https://trevin-small.github.io/JS-Fractals/)
+### Space/Click for new fractal!
+</br>
 ## The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively. 
 #### In this example, we will use the circle, but other shapes (just squares for now!) follow the same rules.
 
