@@ -1,6 +1,9 @@
 # [JS-Fractals](https://trevin-small.github.io/JS-Fractals/) 
 <h2 align="center">AWAIT CONVERGENCE</h2>
-[AWAIT CONVERGENCE](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/WAIT_FOR_CONVERGENCE.png)
+
+![AWAIT CONVERGENCE](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Convergence_One.png)
+![AWAIT CONVERGENCE](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Convergence_Two.png)
+
 <h3 align="center">Space/Click for new fractal!</h3>
 </br>
 
