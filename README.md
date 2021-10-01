@@ -1,7 +1,7 @@
 ## JS-Fractals https://trevin-small.github.io/JS-Fractals/
 
 
-### The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively.
+### The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively. In this example, we will use the circle, but other shapes (just squares for now!) follow the same rules.
 
 ### First, a center or 'parent' circle is drawn. 
 ![Initial Circle](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Initial_Circle.png)
