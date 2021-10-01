@@ -1,12 +1,14 @@
-## JS-Fractals https://trevin-small.github.io/JS-Fractals/
+# [JS-Fractals](https://trevin-small.github.io/JS-Fractals/) 
+<h2 align="center">AWAIT CONVERGENCE</h2>
+<h3 align="center">Space/Click for new fractal!</h3>
+</br>
+## The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively. 
+#### In this example, we will use the circle, but other shapes (just squares for now!) follow the same rules.
 
-
-### The mechanics behind JS-Fractals can be broken down into simple rules that are applied recursively. In this example, we will use the circle, but other shapes (just squares for now!) follow the same rules.
-
-### First, a center or 'parent' circle is drawn. 
+### First, a center or 'parent' circle of random size is drawn. 
 ![Initial Circle](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Initial_Circle.png)
 
-### Next, 4 children circles centered on the curve of the parent circle are drawn (upwards, rightwards, downwards, leftwards)
+### Next, 4 children circles of some fractional size of the parent circle are drawn on the parent circle's curve
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Children.png)
 
 ### Each of those children circles draws its own children circles.
