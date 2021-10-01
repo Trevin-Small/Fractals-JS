@@ -66,6 +66,10 @@ function newFractals() {
     }
 
     function randomize() {
+        var smallerThan = Math.random() * 0.2 + 0.1;
+        var largerThan = Math.random() * 0.25 + 1;
+        var initialSize = Math.random() < 0.75 ? smallerThan : largerThan
+        initialRadiusRatio = initialSize;
         //STROKE_COLOR = Math.random() < 0.5 ? 'rgb(255,255,255)' : 'rgb(0,0,0)';
         prevColor = (360 * Math.random());
         FRACTAL_OPACITY = Math.random() * 0.5 + 0.35;
@@ -78,7 +82,6 @@ function newFractals() {
         MIN_RADIUS = (Math.random() * 10) + 5;
         RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.4;
         fractalShape = Math.round(Math.random() * 1);
-        initialRadiusRatio = Math.random() * 0.3 + 0.1;
     }
 
     function render() { // Recrusive Animation loop 
