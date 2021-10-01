@@ -11,16 +11,28 @@ function newFractals() {
     var prevColor = (360 * Math.random());
     var FRACTAL_OPACITY = Math.random() * 0.5 + 0.35;
     var BACKGROUND_OPACITY = 1;
-    var HAS_FILL = Math.random() < 0.2 ? false : true;
+    var HAS_FILL = Math.random() < 0.5 ? false : true;
 
     var FPS = 45;
     var IS_STATIC = false;
+    var HAS_INTERIOR_CHILDREN = Math.random() < 0.5 ? true : false;
     var ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
-    var RPS = ((Math.random() * 0.05) + 0.05) * ROTATION_DIRECTION;
+    var RPS = ((Math.random() * 0.065) + 0.05) * ROTATION_DIRECTION;
     var TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
-    var MIN_RADIUS = (Math.random() * 10) + 15;
-    var RADIUS_COEFFICIENT = (Math.random() * 0.125) + 0.5;
+    var MIN_RADIUS = (Math.random() * 15) + 15;
+    var RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.475;
     var currentTheta = 0;
+
+    var SIN_SIXTY = Math.sqrt(3) / 2;
+    var TAN_THIRTY = 1 / Math.sqrt(3);
+    var SQRT_TWO = Math.sqrt(2);
+
+    var fractalShape = Math.round(Math.random() * 1);
+    var shapes = {
+        0 : "circle",
+        1 : "square",
+        2 : "triangle"
+    };
 
     var direction = {
         "initial": 0,
@@ -51,7 +63,7 @@ function newFractals() {
             ctx.fillStyle = "rgba(25,25,25)";
             ctx.fillRect(0, 0, width, height);
             renderFractals();
-            if (currentTheta + TRANSLATION_THETA < Math.PI * 2) {
+            if (Math.abs(currentTheta + TRANSLATION_THETA) < Math.PI * 2) {
                 currentTheta += TRANSLATION_THETA;
             } else {
                 currentTheta = 0;
@@ -107,44 +119,51 @@ function newFractals() {
                     ctx.fillStyle = FILL_PREFIX + prevColor + LIGHTING;
                 }
                 
-                ctx.beginPath();
-                ctx.arc(currentX, currentY, radius, 0, 2 * Math.PI);
-                ctx.closePath();
-                ctx.stroke();
+                if (shapes[fractalShape] == "circle") {
+                    drawCircle(currentX, currentY, radius);
+                } else if (shapes[fractalShape] == "square") {
+                    drawSquare(currentX, currentY, radius);
+                } else if (shapes[fractalShape] == "triangle") { 
+                    drawTriangle(currentX, currentY, radius);
+                }
 
                 if (HAS_FILL) {
                     ctx.fill();
                 }
-
-                switch(drawnInDirection) {
-                    case 0: // First fractal
-                        drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
-                        drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
-                        drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
-                        drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
-                        break;
-                    case 1: // Drawn upwards
-                        drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
-                        drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
-                        drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
-                        break;
-                    case 2: // Drawn rightwards
-                        drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
-                        drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
-                        drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
-                        break;
-                    case 3: // Drawn downwards
-                        drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
-                        drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
-                        drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
-                        break;
-                    case 4: // Drawn leftwards
-                        drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
-                        drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
-                        drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
-                        break;
-                    default:
-                        break;
+                if (HAS_INTERIOR_CHILDREN) {
+                    drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
+                    drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
+                    drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
+                    drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
+                } else {
+                    switch(drawnInDirection) {
+                        case 1: // Drawn upwards
+                            drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
+                            drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
+                            drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
+                            break;
+                        case 2: // Drawn rightwards
+                            drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
+                            drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
+                            drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
+                            break;
+                        case 3: // Drawn downwards
+                            drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
+                            drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
+                            drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
+                            break;
+                        case 4: // Drawn leftwards
+                            drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
+                            drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
+                            drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
+                            break;
+                        default: // First fractal OR Fractals w/interior children
+                            drawFractal(currentX + radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["right"], prevColor);
+                            drawFractal(currentX - radius, currentY, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["left"], prevColor);
+                            drawFractal(currentX, currentY + radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["down"], prevColor);
+                            drawFractal(currentX, currentY - radius, oldX, oldY, radius * RADIUS_COEFFICIENT, direction["up"], prevColor);
+                            break; 
+                    }
                 }
             }
         }
@@ -176,11 +195,41 @@ function newFractals() {
         }
         var newAngle = angleToPoint + currentTheta;
         if (parentX - (width / 2) < 10){
-        console.log(newAngle);
         }
         var newX = (Math.cos(newAngle) * radialDistance + parentX);
         var newY = (Math.sin(newAngle) * radialDistance + parentY);
         return [newX, newY];
+    }
+
+    function drawCircle(x, y, radius) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.stroke();
+    }
+
+    function drawSquare(x, y, halfWidth) {
+        ctx.moveTo(x - halfWidth, y - halfWidth);
+        ctx.beginPath();
+        ctx.lineTo(x + halfWidth, y - halfWidth);
+        ctx.lineTo(x + halfWidth, y + halfWidth);
+        ctx.lineTo(x - halfWidth, y + halfWidth);
+        ctx.lineTo(x - halfWidth, y - halfWidth);
+        ctx.closePath();
+        ctx.stroke();
+    }
+
+    function drawTriangle(x, y, halfHeight) {
+        var sideLength = (halfHeight * 2) / SIN_SIXTY;
+        var pointOne = [x, y - halfHeight];
+        var pointTwo = [x + sideLength / 2, y + (2 * halfHeight)];
+        var pointThree = [pointTwo[0] - sideLength, pointTwo[1]];
+        ctx.beginPath();
+        ctx.lineTo(pointOne[0], pointOne[1]);
+        ctx.lineTo(pointTwo[0], pointTwo[1]);
+        ctx.lineTo(pointThree[0], pointThree[1]);
+        ctx.closePath();
+        ctx.stroke();
     }
 
     return {
