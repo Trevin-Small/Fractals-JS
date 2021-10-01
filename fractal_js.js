@@ -9,14 +9,14 @@ function newFractals() {
     var FILL_PREFIX = 'hsl(';
     var LIGHTING = ', ' + (Math.random() * 15 + 45) + '%, ' + (Math.random() * 15 + 45) + '%)';
     var FPS = 45;
-    var IS_STATIC = false;
+    var IS_STATIC = true;
     var SIN_SIXTY = Math.sqrt(3) / 2;
     var TAN_THIRTY = 1 / Math.sqrt(3);
     var SQRT_TWO = Math.sqrt(2);
     var initialRadiusRatio;
     var prevColor;
     var fractalShape;
-    var currentTheta = 0;
+    var currentTheta = Math.PI;
 
     var STROKE_COLOR = 'rgb(255,255,255)';
     var FRACTAL_OPACITY;
@@ -56,7 +56,13 @@ function newFractals() {
 
         document.addEventListener('keyup', function(evt) {
             if (evt.code === 'Space'){
-                randomize();
+                if (IS_STATIC) {
+                    IS_STATIC = false;
+                } else {
+                    randomize();
+                    IS_STATIC = true;
+                    currentTheta = Math.PI;
+                }
             }
         });
 
@@ -77,9 +83,9 @@ function newFractals() {
         HAS_FILL = Math.random() < 0.5 ? false : true;
         HAS_INTERIOR_CHILDREN = Math.random() < 0.5 ? true : false;
         ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
-        RPS = ((Math.random() * 0.05) + 0.025) * ROTATION_DIRECTION;
+        RPS = ((Math.random() * 0.06) + 0.015) * ROTATION_DIRECTION;
         TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
-        MIN_RADIUS = (Math.random() * 10) + 5;
+        MIN_RADIUS = (Math.random() * 10) + 7;
         RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.4;
         fractalShape = Math.round(Math.random() * 1);
     }
