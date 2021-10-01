@@ -12,16 +12,14 @@
 ### Each of those children circles draws its own children circles.
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Second_Children.png)
 ### The children circles may or may not be drawn in the opposite direction of the previous child. This is a randomized characteristic of each fractal.
+#### Notice how the first left child circle is missing its right child circle? Since left is opposite of right, this child was not drawn.
 - Ex. Previous child circle was drawn leftward from its parent, so the next children circles are drawn leftward, upward, and downward.   
 - Ex. Previous circle was drawn downward from its parent, so the next children circles are drawn leftward, rightward, and downward. 
-- Alternatively, children would be drawn in all 4 directions. 
+#### However, this does not always hold true. This depends on the random boolean trait, which in the alternate case would draw children in all 4 directions.  
 
 # Once these circles are drawn, they are all transformed in a circular fashion relative to their parent circle.  
-</br>
 
 ### The first or center circle is stationary, as a circle rotated about its center does not move.
-</br>
-
 ### Its children follow the center circles' curve and orbit it. (Here, the children are rotating clockwise)
 ![Children Circles](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/First_Rotation.png)
 
