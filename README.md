@@ -1,4 +1,4 @@
-# [JS-Fractals](https://trevin-small.github.io/JS-Fractals/) 
+# [JS-Fractals](https://trevin-small.github.io/Fractals-JS/) 
 <h2 align="center">AWAIT CONVERGENCE</h2>
 
 ![AWAIT CONVERGENCE](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Convergence_One.png)
