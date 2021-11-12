@@ -95,8 +95,8 @@ function newFractals() {
         HAS_INTERIOR_CHILDREN = Math.random() < 0.5 ? true : false;
         ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
         TRANSLATION_THETA  = ((2 * Math.PI) * ROTATION_DIRECTION) / FPR;
-        MIN_RADIUS = (Math.random() * 10) + 8;
-        RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.35;
+        MIN_RADIUS = (Math.random() * 10) + 9;
+        RADIUS_COEFFICIENT = (Math.random() * 0.125) + 0.325;
         fractalShape = Math.round(Math.random() * 1);
     }
 
