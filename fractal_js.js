@@ -8,7 +8,8 @@ function newFractals() {
 
     var FILL_PREFIX = 'hsl(';
     var LIGHTING = ', ' + (Math.random() * 15 + 45) + '%, ' + (Math.random() * 15 + 45) + '%)';
-    var FPS = 45;
+    var FPS = 30;
+    var FPR = (Math.random() * 500) + 250;
     var IS_STATIC = true;
     var SIN_SIXTY = Math.sqrt(3) / 2;
     var TAN_THIRTY = 1 / Math.sqrt(3);
@@ -24,7 +25,6 @@ function newFractals() {
     var HAS_FILL;
     var HAS_INTERIOR_CHILDREN;
     var ROTATION_DIRECTION;
-    var RPS;
     var TRANSLATION_THETA;
     var MIN_RADIUS;
     var RADIUS_COEFFICIENT;
@@ -78,10 +78,15 @@ function newFractals() {
     }
 
     function randomize() {
+        FPR = (Math.random() * 500) + 250;
         var smallerThan = Math.random() * 0.2 + 0.1;
         var largerThan = Math.random() * 0.25 + 1;
-        var initialSize = Math.random() < 0.75 ? smallerThan : largerThan
-        initialRadiusRatio = initialSize;
+        initialRadiusRatio = smallerThan;
+        if (Math.random() > 0.75) {
+            initialRadiusRatio = largerThan;
+            FPR = FPR * 2;
+        }
+
         //STROKE_COLOR = Math.random() < 0.5 ? 'rgb(255,255,255)' : 'rgb(0,0,0)';
         prevColor = (360 * Math.random());
         FRACTAL_OPACITY = Math.random() * 0.5 + 0.35;
@@ -89,10 +94,9 @@ function newFractals() {
         HAS_FILL = Math.random() < 0.5 ? false : true;
         HAS_INTERIOR_CHILDREN = Math.random() < 0.5 ? true : false;
         ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
-        RPS = ((Math.random() * 0.06) + 0.015) * ROTATION_DIRECTION;
-        TRANSLATION_THETA  = ((2 * Math.PI) * RPS) / FPS;
-        MIN_RADIUS = (Math.random() * 10) + 7;
-        RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.4;
+        TRANSLATION_THETA  = ((2 * Math.PI) * ROTATION_DIRECTION) / FPR;
+        MIN_RADIUS = (Math.random() * 10) + 8;
+        RADIUS_COEFFICIENT = (Math.random() * 0.15) + 0.35;
         fractalShape = Math.round(Math.random() * 1);
     }
 
@@ -130,7 +134,7 @@ function newFractals() {
         ctx.strokeStyle = STROKE_COLOR;
         var smallerDimension = width < height ? width : height;
         var initialRadius = smallerDimension * initialRadiusRatio;
-        prevColor = drawFractal(width / 2, height / 2, 0, 0, initialRadius, direction["initial"], prevColor);
+        prevColor = drawFractal(width / 2, (height / 2) + (height * 0.05), 0, 0, initialRadius, direction["initial"], prevColor);
     }
 
     function drawFractal(oldX, oldY, parentX, parentY, radius, drawnInDirection, prevColor) {
@@ -283,4 +287,18 @@ function newFractals() {
 
 window.onload = function() {
     newFractals().init(document.body);
+    rescaleIcons(window.innerHeight);
+}
+
+function rescaleIcons(_height){
+    var icons = document.getElementsByName('icon-svg');
+    var icon_boxes = document.getElementsByClassName("icon-box");
+    for (var i = 0; i < icons.length; i++){
+        var newSize = Math.floor(_height * 0.0775).toString().concat('px');
+        icons[i].style.fontSize = newSize;
+        icon_boxes[i].style.padding = "0px 8px 0px 8px";
+    }
+    var icons = document.getElementsByName('fractal-svg');
+    icons[0].style.height = Math.floor(_height * 0.065).toString().concat('px');
+    icons[0].style.padding = "0px";
 }
