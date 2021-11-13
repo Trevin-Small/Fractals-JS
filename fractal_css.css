@@ -24,7 +24,7 @@
     align-items: center;
     overflow: hidden;
     height: inherit;
-    width: 45%;
+    width: 50%;
     top: 0px;
     left: 0px;
     position: fixed;
@@ -43,7 +43,6 @@
     top: 0px;
     right: 0px;
     opacity: 0.8;
-    padding-right: 10px;
 }
 .title-text {
     display: flex;
@@ -53,7 +52,7 @@
     overflow: hidden;
     color: white;
     width: auto;
-    height: 83%;
+    height: 84%;
     padding: 0px 10px 0px 10px;
     text-align: center;
     opacity: 0.825;
@@ -72,10 +71,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 85%;
+    height: auto;
     width: auto;
-    padding: 0px 8px 0px 8px;
-    margin-right: 6px;
+    padding: 5px 7px 5px 7px;
+    margin-right: 5px;
     border-radius: 6px;
     font-size: 20px;
     fill: gray;
@@ -84,28 +83,6 @@
 }
 .icon-box:hover{
     background: gray;
-}
-.message-box {
-    left: 50vw;
-    top: 45vh;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    padding: 5px 40px 5px 40px;
-    position: absolute;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    opacity: 0.8;
-    border-radius: 20px;
-    background-color: darkslategray;
-    border: 5px solid black;
-    color: white;
-    font-family:'Courier New', Courier, monospace;
-    font-size: 2.75vmin;
 }
 .selectDisable {
     -webkit-user-select: none;
