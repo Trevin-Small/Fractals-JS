@@ -52,6 +52,7 @@ function newFractals() {
         
         window.onresize = function() {
             resize();
+            rescaleIcons();
         }
 
         document.addEventListener('keyup', function(evt) {
@@ -287,7 +288,7 @@ function newFractals() {
 
 window.onload = function() {
     newFractals().init(document.body);
-    rescaleIcons(window.innerHeight);
+    rescaleIcons();
 }
 
 function rescaleIcons(){
@@ -295,7 +296,7 @@ function rescaleIcons(){
     var icon_boxes = document.getElementsByClassName("icon-box");
     var heightBasedSize = Math.floor(window.innerHeight * 0.065);
     var widthBasedSize = Math.floor(((window.innerWidth * 0.45) / 3) - 20);
-    var size = ((0.4 * window.innerWidth) / 3) < (window.innerHeight * 0.1) ? widthBasedSize : heightBasedSize;
+    var size = ((0.425 * window.innerWidth) / 3) < (window.innerHeight * 0.1) ? widthBasedSize : heightBasedSize;
     for (var i = 0; i < icons.length; i++){
         icons[i].style.fontSize = size + 'px';
         icon_boxes[i].style.padding = "5px 7px 5px 7px";
