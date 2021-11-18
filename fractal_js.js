@@ -9,7 +9,7 @@ function newFractals() {
     var FILL_PREFIX = 'hsl(';
     var LIGHTING = ', ' + (Math.random() * 15 + 45) + '%, ' + (Math.random() * 15 + 45) + '%)';
     var FPS = 30;
-    var FPR = (Math.random() * 500) + 250;
+    var FPR = (Math.random() * 550) + 250;
     var IS_STATIC = true;
     var SIN_SIXTY = Math.sqrt(3) / 2;
     var TAN_THIRTY = 1 / Math.sqrt(3);
@@ -97,7 +97,7 @@ function newFractals() {
         ROTATION_DIRECTION = Math.random() < 0.5 ? -1 : 1;
         TRANSLATION_THETA  = ((2 * Math.PI) * ROTATION_DIRECTION) / FPR;
         MIN_RADIUS = (Math.random() * 10) + 9;
-        RADIUS_COEFFICIENT = (Math.random() * 0.125) + 0.325;
+        RADIUS_COEFFICIENT = (Math.random() * 0.125) + 0.35;
         fractalShape = Math.round(Math.random() * 1);
     }
 
