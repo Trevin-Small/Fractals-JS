@@ -1,4 +1,4 @@
-# [JS-Fractals](https://trevin-small.github.io/Fractals-JS/) 
+# [JS-Fractals](https://fractals.trevinsmall.com) 
 
 ![AWAIT CONVERGENCE](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Convergence_One.png)
 ![AWAIT CONVERGENCE](https://github.com/Trevin-Small/JS-Fractals/blob/main/images/Convergence_Two.png)
